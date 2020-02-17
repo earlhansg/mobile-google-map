@@ -1,8 +1,22 @@
 <div class="map">
     <agm-map [latitude]="latitude" 
              [longitude]="longitude" 
-             [zoom]="zoom">
+             [zoom]="zoom"
+             *ngIf="viewList">
         <agm-marker [latitude]="latitude" 
-                    [longitude]="longitude"></agm-marker>
+                    [longitude]="longitude"
+                    [markerDraggable]="true"></agm-marker>
     </agm-map>
+    <div *ngIf="!viewList">
+        <agm-map
+			[zoom]='2'
+			(mapClick)='addMarker($event.coords.lat, $event.coords.long)'>
+			<agm-marker
+				*ngFor='let marker of placeStoreService.places'
+				[latitude]='marker.lat'
+				[longitude]='marker.long'
+				[markerDraggable]='true'
+				(markerClick)='selectMarker($event)'></agm-marker>
+        </agm-map>
+    </div>
 </div>

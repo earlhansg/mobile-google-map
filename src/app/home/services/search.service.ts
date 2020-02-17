@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class SearchService {
     private location = new Subject();
+    private searchValue = new BehaviorSubject(false);
 
     sendLocation(latitude, longitude, zoom) {
         this.location.next({ latitude, longitude, zoom });
@@ -14,4 +15,11 @@ export class SearchService {
     accessLocation() {
         return this.location.asObservable();
     }
+    searchStatus(status: boolean) {
+        this.searchValue.next(status);
+    }
+    accessSearchStatus() {
+        return this.searchValue.asObservable();
+    }
+
 }

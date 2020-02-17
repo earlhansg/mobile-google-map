@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { shareReplay, map } from 'rxjs/operators';
 
 import { Place } from '../models/place.model';
 import { PlacesService } from './places.service';
