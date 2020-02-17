@@ -23,7 +23,7 @@ import { AgmCoreModule } from '@agm/core';
       }
     ]),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDLsqUvOCSDZd7QiQwLi9uBepm3R2p1RWE',
+      apiKey: '',
       libraries: ['places']
     })
   ],
