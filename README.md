@@ -13,6 +13,7 @@ git clone https://github.com/earlhansg/mobile-google-map.git
 #### How to run
 
 ````
+ $ npm install     - install dependencies
  $ npm start       - Runs angular at http://localhost:4200
 
 ````
