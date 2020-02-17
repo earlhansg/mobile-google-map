@@ -16,13 +16,13 @@ export class MapComponent implements OnInit, OnDestroy {
   viewList: boolean;
   selectedMarker;
 
-  private subscription: Subscription[] = [];
+  private subscription: Subscription = new Subscription();
 
   constructor(private searchService: SearchService,
               private placeStoreService: PlacesStoreService) {}
 
   ngOnInit() {
-    this.subscription.push(
+    this.subscription.add(
       this.searchService.accessLocation().subscribe(
         ({ latitude, longitude, zoom }) => {
           this.latitude = latitude;
@@ -30,14 +30,14 @@ export class MapComponent implements OnInit, OnDestroy {
           this.zoom = zoom;
         }
     ));
-
-    this.subscription.push(
+    this.subscription.add(
       this.searchService.accessSearchStatus().subscribe((status) => {
         this.viewList = status;
     }));
+
   }
 
   ngOnDestroy() {
-    this.subscription.forEach(subscription => subscription.unsubscribe());
+    this.subscription.unsubscribe();
   }
 }
