@@ -4,7 +4,10 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { HomePage } from './home.page';
+import { HomePage } from './containers/home/home.page';
+import { HeaderComponent } from './components/header/header.component';
+import { SearchComponent } from './components/search/search.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,6 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, HeaderComponent, SearchComponent, MapComponent]
 })
 export class HomePageModule {}
