@@ -1,28 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: 'map.component.html',
   styleUrls: ['map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   latitude: number;
   longitude: number;
   zoom: number;
+  subscription;
 
-  constructor() {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    this.setCurrentLocation();
+      this.subscription = this.searchService.accessLocation().subscribe(
+          ({ latitude, longitude, zoom }) => {
+              this.latitude = latitude;
+              this.longitude = longitude;
+              this.zoom = zoom;
+          }
+      );
   }
 
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = 8.4817689;
-        this.longitude = 124.6681274;
-        this.zoom = 15;
-      });
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

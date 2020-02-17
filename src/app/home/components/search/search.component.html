@@ -1,3 +1,12 @@
 <div class="search">
-    <ion-searchbar></ion-searchbar>
+    <input type="text" 
+           (keydown.enter)="$event.preventDefault()" 
+           placeholder="Search Nearest Location" 
+           autocorrect="off" 
+           autocapitalize="off" 
+           spellcheck="off" 
+           type="text" 
+           #search>
 </div>
+
+<app-map></app-map>
