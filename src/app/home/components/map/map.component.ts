@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from '../../services/search.service';
+import { PlacesStoreService } from '../../services/places-store.service';
 
 import { Subscription } from 'rxjs';
 
@@ -17,7 +18,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService,
+              private placeStoreService: PlacesStoreService) {}
 
   ngOnInit() {
     this.subscription.add(
